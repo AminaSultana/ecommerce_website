@@ -1,0 +1,19 @@
+.list_main{
+    list-style: none;
+    display: inline-block;
+    margin: 1rem;
+    width: 50%;
+}
+
+.list_button{
+    padding: 15px;
+    margin: 1rem;
+    background-color: rgb(77, 77, 159);
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+}
+.price{
+    display: inline-block;
+    margin: 1.5rem;
+}

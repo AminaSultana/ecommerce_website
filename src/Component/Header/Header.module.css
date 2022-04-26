@@ -1,0 +1,51 @@
+.header_main {
+  width: 100%;
+  top: 0%; 
+  height: fit-content;
+}
+
+.title{
+  position: fixed;
+  background-color: rgb(77, 77, 159);
+  width: 100%;
+  z-index: 10;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.ul{
+  list-style: none;
+  display: inline-block;
+  font-size: 2rem;
+  color: white;
+
+}
+.header_content{
+  margin: 10px;
+  display: inline-block;
+}
+
+
+.cart_button{
+  margin-right: 2rem;
+  font-size: 2rem;
+  height: fit-content;
+  padding: 13px;
+  color: white;
+  background-color: transparent;
+  border: 4px solid white;
+  border-radius: 20px;
+}
+
+.header_title{
+  font-size: 5rem;
+  background-color: grey;
+  font-family: 'Times New Roman', Times, serif;
+  margin: auto;
+  width: 100%;
+  height: 300px;
+  padding-top: 10rem;
+  color: white;
+}

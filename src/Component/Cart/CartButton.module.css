@@ -1,0 +1,8 @@
+.cart_btn{
+    padding: 20px;
+    background-color: gray;
+    color: rgb(77, 77, 179);
+    margin: 1rem;
+    font-size: 2rem;
+    border-radius: 10px;
+}
