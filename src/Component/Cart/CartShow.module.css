@@ -1,0 +1,33 @@
+.cart_cancel_btn{
+    position: absolute;
+    right: 5%;
+    
+}
+.subtitle_name{
+    font-size: 20px;
+    font-weight: bold;
+}
+.subtitle{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+
+.total{
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    right:1%;
+}
+
+.total_amount{
+    margin: 1rem;
+}
+
+.title{
+    margin-left: 45%;
+}
+
+.cart_show{
+    padding: 30px;
+}

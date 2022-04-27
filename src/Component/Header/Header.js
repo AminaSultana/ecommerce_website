@@ -1,6 +1,8 @@
 import React from "react";
 
 import classes from "./Header.module.css";
+import ModalCart from "../Modal/ModalCart";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
   return (
@@ -12,7 +14,7 @@ const Header = () => {
             <li className={classes.header_content}>STORE</li>
             <li className={classes.header_content}>ABOUT</li>
           </ul>
-          <button className={classes.cart_button}>Cart</button>
+          <Cart/>
         </nav>
         <h1 className={classes.header_title}>The Generics</h1>
       </header>
