@@ -1,55 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import ModalCart from "../Modal/ModalCart";
 import classes from "./CartShow.module.css";
 import CartItem from "./CartItem";
+import CartContext from "../../Store/cart_context";
 
 const CartShow = () => {
-  const cartElements = [
-    {
-      title: "Colors",
-
-      price: 100,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-      quantity: 2,
-    },
-
-    {
-      title: "Black and white Colors",
-
-      price: 50,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-      quantity: 3,
-    },
-
-    {
-      title: "Yellow and Black Colors",
-
-      price: 70,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-      quantity: 1,
-    },
-  ];
-  const items = cartElements.map((item) => {
-    return (
-      <CartItem
-        key={item.imageUrl}
-        quantity={item.quantity}
-        imageUrl={item.imageUrl}
-        title={item.title}
-        price="$100"
-      />
-    );
-  });
+  const cartContext = useContext(CartContext);
+  const items = (
+    <ul>
+      {cartContext.listOfItems.map((item) => {
+        return (
+          <CartItem
+            key={item.id}
+            id={item.id}
+            quantity={item.quantity}
+            imageUrl={item.imageUrl}
+            title={item.title}
+            price={item.price}
+          />
+        );
+      })}
+    </ul>
+  );
+  /* const items = (<ul>
+    { cartContext.listOfItems.map((item) => ({
+        return (
+          <CartItem
+          key={item.id}
+          id={item.id}
+          quantity={item.quantity}
+          imageUrl={item.imageUrl}
+          title={item.title}
+          price={Number(100)}
+          />
+          )}}
+        </ul>) */
 
   return (
     <ModalCart>
@@ -61,10 +47,12 @@ const CartShow = () => {
           <span className={classes.subtitle_name}>PRICE</span>
           <span className={classes.subtitle_name}>QUANTITY</span>
         </div>
-        <ul>{items}</ul>
+        {items}
         <div className={classes.total}>
           <span>Total</span>
-          <span className={classes.total_amount}>{0}</span>
+          <span className={classes.total_amount}>
+            {cartContext.totalAmount}
+          </span>
         </div>
       </div>
     </ModalCart>

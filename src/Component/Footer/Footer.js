@@ -8,9 +8,9 @@ const Footer = () => {
             The Generics
         </span>
         <span>
-          {<img src='../Assests/icons8-facebook.svg' alt="logo"/>}
-          {<img src="../Assests/icons8-spotify-481.png" alt="logo"/>}
-          {<img src='../Assests/icons8-youtube.svg' alt="logo"/>}
+          <img src='../Assests/icons8-facebook.svg' alt="logo"/>
+          <img src="../Assests/icons8-spotify-481.png" alt="logo"/>
+          <img src='../Assests/icons8-youtube.svg' alt="logo"/>
         </span>
     </footer>
   );

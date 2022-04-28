@@ -1,17 +1,18 @@
-import './App.css';
-import Main from './Component/Body/Main';
-import CartButton from './Component/Cart/CartButton';
-import Footer from './Component/Footer/Footer';
-import Header from './Component/Header/Header';
+import "./App.css";
+import Main from "./Component/Body/Main";
+import CartButton from "./Component/Cart/CartButton";
+import Footer from "./Component/Footer/Footer";
+import Header from "./Component/Header/Header";
+import CartProvider from "./Store/CartProvider";
 
 function App() {
   return (
-    <div className="App">
-     <Header/>
-     <Main/>
-     <CartButton/>
-     <Footer/>
-    </div>
+    <CartProvider>
+      <Header />
+      <Main />
+      <CartButton />
+      <Footer />
+    </CartProvider>
   );
 }
 

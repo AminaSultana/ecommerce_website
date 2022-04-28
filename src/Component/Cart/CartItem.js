@@ -2,10 +2,10 @@ import React from "react";
 
 import classes from "./CartItem.module.css";
 
-
 const CartItem = (props) => {
   return (
-    <li key={props.key} className={classes.li}>
+    <li className={classes.li}>
+      {console.log(props)}
       <span className={classes.title_1}>
         <img src={props.imageUrl} alt="Product" width="70rem" height="50rem" />
         <span>{props.title}</span>

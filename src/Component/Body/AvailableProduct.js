@@ -6,6 +6,7 @@ import classes from "./AvailableProduct.module.css";
 const AvailableProduct = () => {
   const productsArr = [
     {
+      id: "p1",
       title: "Colors",
 
       price: 100,
@@ -15,6 +16,7 @@ const AvailableProduct = () => {
     },
 
     {
+      id: "p2",
       title: "Black and white Colors",
 
       price: 50,
@@ -24,6 +26,7 @@ const AvailableProduct = () => {
     },
 
     {
+      id: "p3",
       title: "Yellow and Black Colors",
 
       price: 70,
@@ -33,6 +36,7 @@ const AvailableProduct = () => {
     },
 
     {
+      id: "p4",
       title: "Blue Color",
 
       price: 100,
@@ -41,12 +45,15 @@ const AvailableProduct = () => {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
+
   const productShow = productsArr.map((item) => {
     return (
       <ProductList
+        key={item.id}
         price={item.price}
         title={item.title}
         imageUrl={item.imageUrl}
+        id={item.id}
       />
     );
   });
