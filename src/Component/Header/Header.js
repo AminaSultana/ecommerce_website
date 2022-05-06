@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import classes from "./Header.module.css";
-import ModalCart from "../Modal/ModalCart";
 import Cart from "../Cart/Cart";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../Store/auth-context";
 
 const Header = () => {
+  const authCtx = useContext(AuthContext);
+  const logoutHandler = ()=>{
+    authCtx.logout();
+  }
+
   return (
     <>
       <header className={classes.header_main}>
@@ -16,11 +21,30 @@ const Header = () => {
                 HOME
               </NavLink>
             </li>
-            <li className={classes.header_content}>STORE</li>
+            <li className={classes.header_content}>
+              <NavLink activeClassName={classes.active} to="/store">
+                STORE
+              </NavLink>
+            </li>
             <li className={classes.header_content}>
               <NavLink activeClassName={classes.active} to="/aboutus">
                 ABOUT
               </NavLink>
+            </li>
+            <li className={classes.header_content}>
+              <NavLink activeClassName={classes.active} to="/contactus">
+                CONTACT US
+              </NavLink>
+            </li>
+            <li className={classes.header_content}>
+              <NavLink activeClassName={classes.active} to="/">
+                LOG IN 
+              </NavLink>
+            </li>
+            <li>
+              {authCtx.isLoggedIn && 
+              <button onClick={logoutHandler}>Logout</button>
+              }
             </li>
           </ul>
           <Cart />
