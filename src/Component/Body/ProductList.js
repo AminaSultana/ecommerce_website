@@ -4,11 +4,12 @@ import classes from "./ProductList.module.css";
 
 const ProductList = (props) => {
   const cartCtx = useContext(CartContext);
-  const addToCartHandler = () => {
+  const addToCartHandler = (e) => {
+    e.preventDefault();
     cartCtx.addItems(props);
   };
   return (
-    <li className={classes.list_main} key={props.id}>
+    <li className={classes.list_main}>
       <h2>{props.title}</h2>
       {<img src={props.imageUrl} alt="Product" />}
       <div>
