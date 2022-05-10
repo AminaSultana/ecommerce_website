@@ -1,26 +1,32 @@
-import React, { useContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React, { Suspense, useContext } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import "./App.css";
-import BottomCartButton from "./Component/Cart/BottomCartButton";
 import Footer from "./Component/Footer/Footer";
 import Header from "./Component/Header/Header";
 import CartProvider from "./Store/CartProvider";
-import AboutUs from "./Component/NavigationPages/AboutUs";
-import Home from "./Component/NavigationPages/Home";
-import ContactUs from "./Component/NavigationPages/ContactUs";
-import ProductDetail from "./Component/Body/ProductDetail";
-import AvailableProduct from "./Component/Body/AvailableProduct";
+//import Home from "./Component/NavigationPages/Home";
+//import BottomCartButton from "./Component/Cart/BottomCartButton";
+//import ProductDetail from "./Component/Body/ProductDetail";
+//import AvailableProduct from "./Component/Body/AvailableProduct";
 import Login from "./Component/Auth/Login";
 import AuthContext from "./Store/auth-context";
 
+const AboutUs = React.lazy(() => import("./Component/NavigationPages/AboutUs"));
+const ContactUs = React.lazy(()=> import("./Component/NavigationPages/ContactUs"));
+const AvailableProduct = React.lazy(()=> import("./Component/Body/AvailableProduct"))
+const ProductDetail = React.lazy(()=> import("./Component/Body/ProductDetail"))
+const NotFound = React.lazy(()=> import("./Pages/NotFound,"))
+
 function App() {
   const authCtx = useContext(AuthContext);
+
   const productsArr = [
     {
-      id: "p1",
+      id: "pone",
       title: "Colors",
       price: 100,
+      quantity: 1,
       imageUrl: {
         imageUrl1:
           "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
@@ -36,12 +42,13 @@ function App() {
     },
 
     {
-      id: "p2",
+      id: "ptwo",
       title: "Black and white Colors",
       price: 50,
+      quantity: 1,
       imageUrl: {
         imageUrl4:
-          "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+          "https://rukminim1.flixcart.com/image/128/128/k4324…84438106-puma-original-imafn2pjhhgt6vyd.jpeg?q=70",
         imageUrl1:
           "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
         imageUrl2:
@@ -52,10 +59,11 @@ function App() {
     },
 
     {
-      id: "p3",
+      id: "pthree",
       title: "Yellow and Black Colors",
 
       price: 70,
+      quantity: 1,
       imageUrl: {
         imageUrl1:
           "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
@@ -69,9 +77,10 @@ function App() {
     },
 
     {
-      id: "p4",
+      id: "pfour",
       title: "Blue Color",
       price: 100,
+      quantity: 1,
       imageUrl: {
         imageUrl1:
           "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
@@ -103,30 +112,35 @@ function App() {
   return (
     <CartProvider>
       <Header />
-      <Switch>
-        <Route exact path="/aboutus">
-          <AboutUs />
-        </Route>
-        <Route exact path="/store">
-          {authCtx.isLoggedIn && <AvailableProduct data={productsArr} />}
-          {!authCtx.isLoggedIn && <Redirect to="/"/>}
-        </Route>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/contactus">
-          <ContactUs onFormSubmit={formSubmitHandler} />
-        </Route>
-        <Route exact path="/store/:productId">
-          <ProductDetail data={productsArr} />
-        </Route>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        
-      </Switch>
-      {/*<BottomCartButton />*/}
-      {/* <Footer />*/}
+      <Suspense fallback={<p>Loading...</p>}>
+        <Switch>
+          <Route path="/" exact>
+            {!authCtx.isLoggedIn && <Login />}
+            {authCtx.isLoggedIn && <Redirect to="/store" />}
+          </Route>
+          <Route path="/aboutus" exact>
+            <AboutUs />
+          </Route>
+          <Route path="/store" exact>
+            {authCtx.isLoggedIn && <AvailableProduct data={productsArr} />}
+            {!authCtx.isLoggedIn && <Redirect to="/" />}
+          </Route>
+          {/*  <Route path="/home">
+            <Home />
+          </Route> */}
+          <Route path="/contactus">
+            <ContactUs onFormSubmit={formSubmitHandler} />
+          </Route>
+          <Route path="/store/:productId">
+            <ProductDetail data={productsArr} />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Suspense>
+      {/* { authCtx.isLoggedIn && <BottomCartButton />}*/}
+      <Footer />
     </CartProvider>
   );
 }

@@ -1,55 +1,52 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 
 import classes from "./Header.module.css";
 import Cart from "../Cart/Cart";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthContext from "../../Store/auth-context";
 
 const Header = () => {
   const authCtx = useContext(AuthContext);
-  const logoutHandler = ()=>{
+  const logoutHandler = () => {
     authCtx.logout();
-  }
+  };
 
   return (
     <>
       <header className={classes.header_main}>
         <nav className={classes.title}>
           <ul className={classes.ul}>
-            <li className={classes.header_content}>
-              <NavLink activeClassName={classes.active} to="/home">
+            {/* <li className={classes.header_content}>
+              <Link  to="/home">
                 HOME
-              </NavLink>
-            </li>
+              </Link>
+            </li> */}
             <li className={classes.header_content}>
-              <NavLink activeClassName={classes.active} to="/store">
+              <Link to="/store">
                 STORE
-              </NavLink>
+              </Link>
             </li>
             <li className={classes.header_content}>
-              <NavLink activeClassName={classes.active} to="/aboutus">
+              <Link to="/aboutus">
                 ABOUT
-              </NavLink>
+              </Link>
             </li>
             <li className={classes.header_content}>
-              <NavLink activeClassName={classes.active} to="/contactus">
+              <Link to="/contactus">
                 CONTACT US
-              </NavLink>
+              </Link>
             </li>
             <li className={classes.header_content}>
-              <NavLink activeClassName={classes.active} to="/">
-                LOG IN 
-              </NavLink>
-            </li>
-            <li>
-              {authCtx.isLoggedIn && 
-              <button onClick={logoutHandler}>Logout</button>
-              }
+                {authCtx.isLoggedIn && (
+                  <button onClick={logoutHandler} className={classes.logout_btn}>Logout</button>
+                )}                
             </li>
           </ul>
-          <Cart />
+          <span className={classes.cart}>{authCtx.isLoggedIn && <Cart />}</span>
         </nav>
-        <h1 className={classes.header_title}>The Generics</h1>
+        <div className={classes.header_title_div}>
+          <h1 className={classes.header_title}>The Generics</h1>
+        </div>
       </header>
     </>
   );
